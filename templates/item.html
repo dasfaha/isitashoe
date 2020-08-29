@@ -12,8 +12,7 @@
 				fetch(`/uploadfile/`, {
 				      		method: "POST",
 					        body: formData,
-				}).then(response =>  alert(response.json()), function(data){ console.log(data)})
-
+				}).then( async(response) =>  {var a = await response.json(); alert(a.classification) }, function(data){ console.log(data)})
 			}
 		</script>
 
