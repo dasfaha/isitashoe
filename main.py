@@ -31,4 +31,4 @@ async def create_upload_file(file: UploadFile = File(...)):
     img = open_image(file.file)
     pred_class,pred_idx,outputs = learn.predict(img)
     print(pred_class.obj)
-    return {"classifcation": pred_class.obj}
+    return {"classification": pred_class.obj}
