@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Is this a Shoe?</title>
+		<link href="{{ url_for('static', path='styles.css') }}" rel="stylesheet">
+
+		<script type="application/javascript">
+			function FileUpload( file) {
+				const self = this;
+				var formData = new FormData();
+				formData.append("file", file, file.name);
+				fetch(`/uploadfile/`, {
+				      		method: "POST",
+					        body: formData,
+				})
+
+			}
+		</script>
+
+
+	</head>
+	<body>
+		<div id="headline">
+			<header>
+				<h1>Is this a shoe!?</h1>
+				<p></p>
+			</header>
+		</div>
+		<div id="view">
+			<p>The camera view goes here</p>
+		</div>
+		<div>
+			<input type="file" accept="image/*" id="file-input">
+			<script>
+				const fileInput = document.getElementById('file-input');
+				console.log("Running here");
+fileInput.addEventListener('change', (e) => FileUpload(e.target.files[0]));
+//fileInput.addEventListener('sendFile', (e) => sendFile(e.target.files));
+			</script>
+		</div>
+
+</html>
