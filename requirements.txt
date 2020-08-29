@@ -1,3 +1,4 @@
 fastapi==0.61.0
 fastai==1.0.61
 uvicorn==0.11.3
+aiofiles==0.4.0
