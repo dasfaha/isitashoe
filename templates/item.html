@@ -12,7 +12,7 @@
 				fetch(`/uploadfile/`, {
 				      		method: "POST",
 					        body: formData,
-				}).then(function (response) { alert(response.json()['classification'])}, function(data){ console.log(data)})
+				}).then(function (response) { alert(response)}, function(data){ console.log(data)})
 
 			}
 		</script>
