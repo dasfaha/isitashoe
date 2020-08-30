@@ -17,7 +17,7 @@
 				fetch(`/uploadfile/`, {
 					method: "POST",
 					body: formData,
-				}).then( async(response) =>  {var a = await response.json(); alert(a.classification) }, function(data){ console.log(data)})
+				}).then( async(response) =>  {var a = await response.json(); document.getElementById('outputTxt').innerHTML = a.classification }, function(data){ console.log(data)})
 			}
 		</script>
 
@@ -28,18 +28,25 @@
 
 		<div id="headline">
 			<header>
-				<h1>Is this a shoe!?</h1>
+				<h1>Oxford or Trainer?</h1>
 				<p></p>
 			</header>
 		</div>
 		<div id="view">
 
-		<video id="player" controls autoplay></video>
+			<video id="player" autoplay width=320 height=240></video>
+		</div>
+		<div id="btnCapture">
+			<button id="capture">Capture</button>
 		</div>
 		<div id="captured">
-
-		<button id="capture">Capture</button>
-		<canvas id="canvas" width=320 height=240></canvas>
+			<canvas id="canvas" width=320 height=240></canvas>
+		</div>
+		<div id="outputLabel">
+			<h2>These are:</h2>
+		</div>
+		<div id="output">
+			<h3 id='outputTxt'>  </h3>
 		</div>
 		<div>
 			<input type="file" accept="image/*" id="file-input">
@@ -58,6 +65,7 @@ const captureButton = document.getElementById('capture');
 
 const constraints = {
 	video: true,
+	facingMode: 'environment'
 };
 
 captureButton.addEventListener('click', () => {
