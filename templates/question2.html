@@ -1,17 +1,22 @@
 <html>
+
+
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Is this a Shoe?</title>
 		<link href="{{ url_for('static', path='styles.css') }}" rel="stylesheet">
 
 		<script type="application/javascript">
+
+
+
 			function FileUpload( file) {
 				const self = this;
 				var formData = new FormData();
 				formData.append("file", file, file.name);
 				fetch(`/uploadfile/`, {
-				      		method: "POST",
-					        body: formData,
+					method: "POST",
+					body: formData,
 				}).then( async(response) =>  {var a = await response.json(); alert(a.classification) }, function(data){ console.log(data)})
 			}
 		</script>
@@ -19,6 +24,8 @@
 
 	</head>
 	<body>
+
+
 		<div id="headline">
 			<header>
 				<h1>Is this a shoe!?</h1>
@@ -26,16 +33,50 @@
 			</header>
 		</div>
 		<div id="view">
-			<p>The camera view goes here</p>
+
+		<video id="player" controls autoplay></video>
+		</div>
+		<div id="captured">
+
+		<button id="capture">Capture</button>
+		<canvas id="canvas" width=320 height=240></canvas>
 		</div>
 		<div>
 			<input type="file" accept="image/*" id="file-input">
 			<script>
 				const fileInput = document.getElementById('file-input');
-				console.log("Running here");
+console.log("Running here");
 fileInput.addEventListener('change', (e) => FileUpload(e.target.files[0]));
 //fileInput.addEventListener('sendFile', (e) => sendFile(e.target.files));
+
+
+
+const player = document.getElementById('player');
+const canvas = document.getElementById('canvas');
+const context = canvas.getContext('2d');
+const captureButton = document.getElementById('capture');
+
+const constraints = {
+	video: true,
+};
+
+captureButton.addEventListener('click', () => {
+	// Draw the video frame to the canvas.
+	context.drawImage(player, 0, 0, canvas.width, canvas.height);
+	canvas.toBlob(FileUpload)
+});
+
+// Attach the video stream to the video element and autoplay.
+navigator.mediaDevices.getUserMedia(constraints)
+	.then((stream) => {
+		player.srcObject = stream;
+	});
+
 			</script>
 		</div>
+
+
+
+
 
 </html>

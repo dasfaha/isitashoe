@@ -15,13 +15,13 @@ templates = Jinja2Templates(directory="templates")
 def read_root():
     return {"Hello": "World"}
 
-@app.get("/items/{this_id}", response_class=HTMLResponse)
-async def read_item(request: Request, this_id: str ):
-    return templates.TemplateResponse("item.html", {'request': request, 'id':this_id})
+@app.get("/question2/", response_class=HTMLResponse)
+async def read_item(request: Request ):
+    return templates.TemplateResponse("question2.html", {'request': request})
 
-@app.post("/files/")
-async def create_file(file: bytes = File(...)):
-    return {"file_size": len(file)}
+@app.get("/camera/", response_class=HTMLResponse)
+async def camera(request: Request):
+    return templates.TemplateResponse("camera.html", {'request': request})
 
 @app.post("/uploadfile/")
 async def create_upload_file(file: UploadFile = File(...)):
