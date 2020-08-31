@@ -32,15 +32,16 @@
 				<p></p>
 			</header>
 		</div>
-		<div id="view">
-
-			<video id="player" autoplay width=320 height=240></video>
+		<div class='container'>
+			<div id="view" >
+				<video id="player" autoplay width=320 height=240></video>
+			</div>
+			<div id="capture"  >
+				<canvas id="canvas" width=320 height=240></canvas>
+			</div>
 		</div>
-		<div id="btnCapture">
-			<button id="capture">Capture</button>
-		</div>
-		<div id="captured">
-			<canvas id="canvas" width=320 height=240></canvas>
+		<div id="divBtnCapture" class='rela'>
+			<button id="btnCapture">Capture</button>
 		</div>
 		<div id="outputLabel">
 			<h2>These are:</h2>
@@ -61,7 +62,7 @@ fileInput.addEventListener('change', (e) => FileUpload(e.target.files[0]));
 const player = document.getElementById('player');
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
-const captureButton = document.getElementById('capture');
+const captureButton = document.getElementById('btnCapture');
 
 const constraints = {
 	video: true,
@@ -69,6 +70,7 @@ const constraints = {
 };
 
 captureButton.addEventListener('click', () => {
+	console.log('running here')
 	// Draw the video frame to the canvas.
 	context.drawImage(player, 0, 0, canvas.width, canvas.height);
 	canvas.toBlob(FileUpload)
