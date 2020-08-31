@@ -65,8 +65,9 @@ const context = canvas.getContext('2d');
 const captureButton = document.getElementById('btnCapture');
 
 const constraints = {
-	video: true,
-	facingMode: 'environment'
+	video:{
+		facingMode:  'environment'
+		}
 };
 
 captureButton.addEventListener('click', () => {
@@ -75,6 +76,22 @@ captureButton.addEventListener('click', () => {
 	context.drawImage(player, 0, 0, canvas.width, canvas.height);
 	canvas.toBlob(FileUpload)
 });
+
+function gotDevices(deviceInfos) {
+console.log("gotDevices");
+	for (var i = 0; i !== deviceInfos.length; ++i) {
+		var deviceInfo = deviceInfos[i];
+		var option = document.createElement('option');
+		option.value = deviceInfo.deviceId;
+
+		if (deviceInfo.kind === 'videoinput') {
+			var txt =  'Camera:' + deviceInfo.label;
+		}
+
+
+	}
+}
+navigator.mediaDevices.enumerateDevices().then(gotDevices);
 
 // Attach the video stream to the video element and autoplay.
 navigator.mediaDevices.getUserMedia(constraints)
