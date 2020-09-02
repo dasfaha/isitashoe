@@ -33,14 +33,14 @@
 			</header>
 		</div>
 		<div class='container'>
-			<div id="view" >
-				<video id="player" autoplay width=320 height=240></video>
+			<div class="divElem" id="view" >
+				<video id="player" class="innerDims" autoplay ></video>
 			</div>
-			<div id="capture"  >
-				<canvas id="canvas" width=320 height=240></canvas>
+			<div class="divElem" id="capture"  >
+				<canvas id="canvas" class="innerDims" ></canvas>
 			</div>
 		</div>
-		<div id="divBtnCapture" class='rela'>
+		<div id="divBtnCapture" >
 			<button id="btnCapture">Capture</button>
 		</div>
 		<div id="outputLabel">
@@ -66,7 +66,10 @@ const captureButton = document.getElementById('btnCapture');
 
 const constraints = {
 	video:{
-		facingMode:  'environment'
+		facingMode:  'environment',
+		width: {exact: 300},
+		height: {exact: 240},
+		resizeMode: 'none'
 		}
 };
 
@@ -91,6 +94,9 @@ console.log("gotDevices");
 
 	}
 }
+
+
+
 navigator.mediaDevices.enumerateDevices().then(gotDevices);
 
 // Attach the video stream to the video element and autoplay.

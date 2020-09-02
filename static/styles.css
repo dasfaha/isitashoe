@@ -4,27 +4,29 @@ body {
 
 .container {
 width: 3020;
-height: 240;;
+height: 320;;
 	padding: 5px;
 	margin: 0 auto;
 	position: relative;
 }
-#view {
-  position: absolute;
+
+.innerDims {
+ width:240;
+ height:300;
+}
+
+.divElem {
 top: 0;
 left: 0;
+  position: absolute;
+ width:240;
+ height:300;
+}
+
+#view {
  z-index: 5;	
-width: 100%;
-height: auto;
 }
 
 #capture {
-  position: absolute;
-top: 0;
-left: 0;
   z-index: 10;
-}
-
-.rela {
-	position: relative;
 }
