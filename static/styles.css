@@ -1,32 +1,42 @@
 body {
-  background-color: rgb(208,208,208);
+    margin: 0 auto;
+    max-width: 50em;
+}
+
+head {
+    margin: 0 auto;
+    max-width: 50em;
 }
 
 .container {
-width: 3020;
-height: 320;;
-	padding: 5px;
-	margin: 0 auto;
-	position: relative;
+    width: 500;
+    height: 320;;
+    padding: 5px;
+    margin: 0 auto;
+    position: relative;
+    border: solid green;
+    border-width: 0 10px;
+    background-color: lightblue;
+    margin: auto;
 }
 
 .innerDims {
- width:240;
- height:300;
+    width:240;
+    height:300;
 }
 
 .divElem {
-top: 0;
-left: 0;
-  position: absolute;
- width:240;
- height:300;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width:240;
+    height:300;
 }
 
 #view {
- z-index: 5;	
+    z-index: 5;	
 }
 
 #capture {
-  z-index: 10;
+    z-index: 10;
 }
