@@ -7,12 +7,13 @@
 	</head>
 
 	<body>
-		<div id="headline">
-			<header>
-				<h1>Oxford or Trainer?</h1>
-				<p></p>
-			</header>
+        <header>
+        <div id="headline">
+			    <div id="header-text">
+                    <h1 style="margin:0;" >Oxford or Trainer?</h1>
+                 </div>
 		</div>
+	    </header>
 		<div class='container'>
 			<div class="divElem" id="view" >
 				<video id="player" class="innerDims" autoplay ></video>
@@ -21,16 +22,17 @@
 				<canvas id="canvas" class="innerDims" ></canvas>
 			</div>
 		</div>
-		<div id="divBtnCapture" >
-			<button id="btnCapture">Capture</button>
-		</div>
-		<div id="outputLabel">
-			<h2>These are:</h2>
-		</div>
-		<div id="output">
-			<h3 id='outputTxt'>  </h3>
-		</div>
 
+        <div class='convenient_container'>
+            <div id="divBtnCapture" class="middle" >
+                <button id="btnCapture">Capture</button>
+            </div>
+        </div>
+        <div class='convenient_container'>
+            <div id="output"  class="middle" >
+                <h2 id='outputTxt'> ???  </h2>
+            </div>
+        </div>
 			<script>
 
 const player = document.getElementById('player');
@@ -51,8 +53,20 @@ captureButton.addEventListener('click', () => {
 	console.log('running here')
 	// Draw the video frame to the canvas.
 	context.drawImage(player, 0, 0, canvas.width, canvas.height);
-	canvas.toBlob(FileUpload)
+	canvas.toBlob(EvaluateImage)
 });
+
+
+	function EvaluateImage( file) {
+				const self = this;
+				var formData = new FormData();
+				formData.append("file", file, file.name);
+				fetch(`/uploadfile/`, {
+					method: "POST",
+					body: formData,
+				}).then( async(response) =>  {var a = await response.json(); document.getElementById('outputTxt').innerHTML = a.classification }, function(data){ console.log(data)})
+			}
+                
 
 function gotDevices(deviceInfos) {
 console.log("gotDevices");
